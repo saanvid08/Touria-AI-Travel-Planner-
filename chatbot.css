@@ -1,0 +1,579 @@
+/*
+File created date: July 13, 2026
+Created by: Saanvi Doppalapudi
+Updated by: Aswitha (July 22, 2026) — pale-blue chat UI, welcome panel, thinking spinner,
+  centered chat column with page-edge scrollbar (scroll on .container, not .chatbox)
+Updated by: Aswitha (July 29, 2026) — clockwise slower thinking spin, summary table styles
+Function of file: CSS styling for AI Tour Planner chatbot page
+*/
+
+@import url('https://fonts.googleapis.com/css2?family=Caveat:wght@600;700&family=Outfit:wght@400;500;600;700&display=swap');
+
+:root {
+    --chat-bg: #e6fbff;
+    --user-bubble: #abedf9;
+    --input-bg: #abedf9;
+    --send-bg: #7fd8ea;
+    --ink: #1a1a1a;
+    --muted: #8a939c;
+    --action: #a8b0b8;
+    --action-active: #1f6b63;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body.chat-page {
+    font-family: "Outfit", sans-serif;
+    background: var(--chat-bg);
+    color: var(--ink);
+    height: 100vh;
+    overflow: hidden;
+}
+
+/* Top navigation */
+.navbar {
+    height: 64px;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    padding: 0 24px;
+    background: transparent;
+}
+
+.back-home-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    color: var(--ink);
+    text-decoration: none;
+    font-size: 0.95rem;
+    font-weight: 600;
+    padding: 0.4rem 0.85rem;
+    border-radius: 999px;
+    border: 1px solid rgba(0, 0, 0, 0.08);
+    background: rgba(255, 255, 255, 0.65);
+    transition: background 0.2s ease, border-color 0.2s ease;
+}
+
+.back-home-btn:hover {
+    background: #fff;
+    border-color: rgba(0, 0, 0, 0.14);
+}
+
+.nav-links {
+    display: none;
+}
+
+/* ---- Main layout ----
+   Welcome mode: container overflow is hidden.
+   Chat mode (body.is-chatting): container becomes the vertical scroller so the
+   scrollbar sits on the far RIGHT of the viewport while .chatbox stays centered. */
+.container {
+    width: 100%;
+    height: calc(100vh - 64px);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+    overflow: hidden;
+    padding: 0 1.5rem 1.5rem;
+}
+
+.chat-header {
+    display: none;
+}
+
+/* ---- Welcome (start planning) ----
+   Occupancy matches mockup: art ~40% top, full-width banner */
+.welcome-panel {
+    flex: 1;
+    width: 100%;
+    max-width: none;
+    min-height: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    text-align: center;
+    padding: 0;
+    transition: opacity 0.35s ease, transform 0.35s ease;
+}
+
+.welcome-art-wrap {
+    width: min(1100px, 96vw);
+    height: 38vh;
+    min-height: 220px;
+    max-height: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    padding: 0.75rem 1rem 0;
+}
+
+.welcome-art {
+    /* Updated width + previous height (38vh frame) */
+    width: 100%;
+    height: 100%;
+    max-height: none;
+    max-width: none;
+    object-fit: contain;
+    object-position: center center;
+    display: block;
+}
+
+.welcome-title {
+    font-family: "Caveat", cursive;
+    font-size: clamp(2.2rem, 5.5vw, 3.1rem);
+    font-weight: 700;
+    color: var(--ink);
+    margin-top: 1.1rem;
+    margin-bottom: 0;
+    flex-shrink: 0;
+    max-width: 720px;
+}
+
+.welcome-guest {
+    margin-top: 1rem;
+    max-width: 28rem;
+    font-size: 0.95rem;
+    color: var(--muted);
+    line-height: 1.5;
+}
+
+.welcome-guest a {
+    color: #2a6f8a;
+    font-weight: 600;
+}
+
+/* ---- Chat messages ----
+   Centered column (max 860px). No local overflow — scrolling is on .container
+   so the bar is at the page edge, not beside this column. */
+.chatbox {
+    width: 100%;
+    max-width: 860px;
+    margin: 0 auto;
+    flex: 1;
+    padding: 1.25rem 0 1rem;
+    display: none;
+    flex-direction: column;
+    gap: 1.15rem;
+    overflow-y: visible;
+    align-self: center;
+}
+
+.message {
+    display: flex;
+    width: 100%;
+    max-width: 100%;
+}
+
+.message.bot {
+    align-self: stretch;
+    justify-content: flex-start;
+}
+
+.message.user {
+    align-self: stretch;
+    justify-content: flex-end;
+}
+
+.message.user .text-bubble {
+    background: var(--user-bubble);
+    color: var(--ink);
+    border: none;
+    border-radius: 18px 18px 6px 18px;
+    padding: 0.85rem 1.1rem;
+    max-width: min(480px, 75%);
+    width: fit-content;
+    box-shadow: none;
+    text-align: left;
+    word-break: break-word;
+}
+
+.message.bot .bot-block {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.65rem;
+    width: 100%;
+    max-width: 100%;
+}
+
+.message.bot .text-bubble {
+    background: transparent;
+    border: none;
+    color: var(--ink);
+    padding: 0;
+    border-radius: 0;
+    max-width: 100%;
+    width: 100%;
+    font-size: 1.02rem;
+    line-height: 1.55;
+    text-align: left;
+}
+
+.text-bubble {
+    font-size: 1rem;
+    line-height: 1.5;
+}
+
+.bot-actions {
+    display: flex;
+    align-items: center;
+    gap: 0.85rem;
+    color: var(--action);
+}
+
+.bot-actions button {
+    width: auto;
+    height: auto;
+    padding: 0;
+    border: none;
+    border-radius: 0;
+    background: transparent;
+    color: var(--action);
+    font-size: 0.95rem;
+    cursor: pointer;
+}
+
+.bot-actions button:hover {
+    background: transparent;
+    color: #6b757e;
+}
+
+.bot-actions button.is-active {
+    color: var(--action-active);
+}
+
+.bot-avatar {
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-top: 0.15rem;
+    background: #dceaf2;
+}
+
+.bot-avatar--spin {
+    width: 28px;
+    height: 28px;
+    animation: logoSpin 2.8s linear infinite;
+    transform-style: preserve-3d;
+    flex-shrink: 0;
+    box-shadow: none;
+}
+
+.message.thinking {
+    align-items: center;
+    gap: 0.85rem;
+    opacity: 0.95;
+    perspective: 520px;
+    padding: 0.35rem 0;
+}
+
+.thinking-label {
+    font-size: 1rem;
+    color: var(--muted);
+    font-weight: 500;
+}
+
+.text-bubble img {
+    display: block;
+    max-width: min(100%, 480px);
+    width: auto;
+    height: auto;
+    max-height: 320px;
+    border-radius: 12px;
+    margin: 0.55rem 0 0.75rem;
+    object-fit: contain;
+    background: rgba(255, 255, 255, 0.55);
+}
+
+.text-bubble a {
+    color: #1f6b63;
+    font-weight: 600;
+    text-decoration: underline;
+    text-underline-offset: 2px;
+}
+
+/* ---- Input: same width as chat column, centered under messages ---- */
+.input-area {
+    width: 100%;
+    max-width: 860px;
+    margin-top: 0;
+    margin-bottom: 0;
+    margin-left: auto;
+    margin-right: auto;
+    align-self: stretch;
+    display: flex;
+    align-items: flex-end;
+    gap: 0.5rem;
+    border: none;
+    border-radius: 24px;
+    padding: 0.45rem 0.45rem 0.45rem 1.15rem;
+    background: var(--input-bg);
+    box-shadow: 0 6px 24px rgba(40, 60, 80, 0.08);
+    box-sizing: border-box;
+}
+
+textarea#inputMessage {
+    flex: 1;
+    height: 44px;
+    min-height: 44px;
+    max-height: 120px;
+    resize: none;
+    background: none;
+    border: none;
+    outline: none;
+    color: var(--ink);
+    padding: 0.65rem 0.5rem;
+    font-size: 1rem;
+    font-family: "Outfit", sans-serif;
+    overflow-y: auto;
+}
+
+textarea#inputMessage::placeholder {
+    color: var(--muted);
+}
+
+#sendBtn {
+    height: 42px;
+    width: 42px;
+    flex-shrink: 0;
+    border: none;
+    border-radius: 50%;
+    background: var(--send-bg);
+    color: var(--ink);
+    cursor: pointer;
+    font-size: 1rem;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    transition: transform 0.15s ease, background 0.15s ease;
+}
+
+#sendBtn:hover {
+    background: #a6d4e8;
+    transform: translateY(-1px);
+}
+
+#sendBtn:disabled {
+    opacity: 0.55;
+    cursor: not-allowed;
+    transform: none;
+}
+
+/* ---- Active chat layout (after first message) ----
+   Step 1: Enable vertical scroll on the full-width container → scrollbar at page right
+   Step 2: Hide welcome panel after exit animation
+   Step 3: Show centered chatbox (grow with content; no inner scrollbar)
+   Step 4: Keep input sticky at bottom of the scrollable container */
+body.is-chatting .container {
+    overflow-y: auto;
+    overflow-x: hidden;
+    align-items: stretch;
+}
+
+body.is-chatting .welcome-panel {
+    pointer-events: none;
+}
+
+body.is-chatting .welcome-panel.is-leaving {
+    animation: welcomeOut 0.38s ease forwards;
+}
+
+body.is-chatting .welcome-panel[hidden] {
+    display: none;
+}
+
+body.is-chatting .chatbox {
+    display: flex;
+    flex: 1 0 auto;
+    min-height: min-content;
+    overflow: visible;
+    margin-left: auto;
+    margin-right: auto;
+    align-self: center;
+    animation: chatIn 0.45s ease both;
+}
+
+body.is-chatting .input-area-container {
+    position: sticky;
+    bottom: 0;
+    z-index: 5;
+    margin-top: auto;
+    padding-bottom: 0.5rem;
+}
+
+body.is-chatting .input-area {
+    position: static;
+    margin-left: 0;
+    margin-right: 0;
+    align-self: stretch;
+}
+
+@keyframes welcomeOut {
+    from {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+    to {
+        opacity: 0;
+        transform: translateY(-12px) scale(0.98);
+    }
+}
+
+@keyframes chatIn {
+    from {
+        opacity: 0;
+        transform: translateY(16px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Earth-like self-revolution: turn around the vertical axis (clockwise) */
+@keyframes logoSpin {
+    from { transform: rotateY(0deg); }
+    to { transform: rotateY(-360deg); }
+}
+
+/* Markdown inside bubbles */
+.text-bubble p {
+    margin: 0 0 0.65em;
+    line-height: 1.55;
+}
+
+.text-bubble p:last-child {
+    margin-bottom: 0;
+}
+
+.text-bubble h1,
+.text-bubble h2,
+.text-bubble h3 {
+    margin-top: 0.75em;
+    margin-bottom: 0.4em;
+    color: var(--ink);
+}
+
+.text-bubble ul,
+.text-bubble ol {
+    margin: 0.4em 0 0.75em;
+    padding-left: 1.35rem;
+}
+
+.text-bubble li {
+    margin-bottom: 0.3em;
+}
+
+.text-bubble a:hover {
+    text-decoration: underline;
+}
+
+.text-bubble table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 1rem 0 1.25rem;
+    font-size: 0.92rem;
+    overflow: hidden;
+    border-radius: 12px;
+    background: #fff;
+    box-shadow: 0 2px 10px rgba(40, 60, 80, 0.06);
+}
+
+.text-bubble thead th {
+    background: #d7f0f7;
+    color: var(--ink);
+    font-weight: 600;
+    text-align: left;
+}
+
+.text-bubble th,
+.text-bubble td {
+    padding: 0.65rem 0.85rem;
+    border-bottom: 1px solid #d5e8ef;
+    vertical-align: top;
+}
+
+.text-bubble tbody tr:last-child td {
+    border-bottom: none;
+}
+
+.text-bubble tbody tr:nth-child(even) {
+    background: rgba(255, 255, 255, 0.65);
+}
+
+@media (max-width: 640px) {
+    .container {
+        padding: 0 0.85rem 1rem;
+    }
+
+    .welcome-art-wrap {
+        width: min(100%, 96vw);
+        height: 32vh;
+        min-height: 180px;
+    }
+
+    .message.user .text-bubble {
+        border-radius: 18px 18px 6px 18px;
+        max-width: 88%;
+    }
+}
+
+.suggestion {
+    padding: 10px 18px;
+    border-radius: 20px;
+    background: #ffffff;
+    border: 1px solid #b8dfe8;
+    cursor: pointer;
+    font-family: "Outfit", sans-serif;
+    font-size: 0.95rem;
+    transition: 0.2s;
+    flex: 0 1 auto;
+}
+
+.suggestion:hover {
+    background: #abedf9;
+}
+
+/* Footer stack: suggestions row, then input — each keeps its own space */
+.input-area-container {
+    width: 100%;
+    max-width: 860px;
+    margin-left: auto;
+    margin-right: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0.65rem;
+    background: var(--chat-bg);
+    box-sizing: border-box;
+}
+
+.suggested-replies {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+    margin: 0;
+    padding: 0.15rem 0.25rem 0;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    position: static;
+    z-index: auto;
+    box-sizing: border-box;
+}
+
+.suggested-replies:empty {
+    display: none;
+    margin: 0;
+    padding: 0;
+    gap: 0;
+}
