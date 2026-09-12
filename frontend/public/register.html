@@ -1,0 +1,117 @@
+<!--
+File created date: July 1, 2025
+Created by: Saanvi Doppalapudi
+Function of file: Registration page for AI Tour Planner
+-->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!--Page set up-->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign Up | Touria</title>
+    <link rel="icon" type="image/png" href="/favicon.png">
+    <!--Link to same CSS styling file as login.html-->
+    <link rel="stylesheet" href="login.css">
+</head>
+<body>
+<!-- Website Logo Bubble -->
+<a href="touria-plan-welcome.html" class="logo-bubble">
+   <img src="/favicon.png" alt="Touria">
+   <span>Touria</span>
+</a>
+
+
+<div class="login-container">
+
+    <!--Left Side of Page (same as login page)-->
+    <div class="left-side">
+
+        <div class="background-image"></div>
+        <div class="overlay"></div>
+
+        <!--Title and description of the page-->
+        <div class="title">
+            <h1>Your AI travel planner awaits.</h1>
+            <p>Describe your trip. AI builds a personalized itinerary in moments: flights, stays, and much more.</p>
+        </div>
+
+    </div>
+
+    <!--Right Side (Registration Form Section)-->
+    <div class="right-side">
+        <div class="info-box">
+
+
+
+            <!--Registration form title and description-->
+            <h2>Create Account</h2>
+            <h3> Start planning your trips today </h3>
+
+            <!--Input fields for email and password, with placeholders-->
+            <form>
+                <div class = "small-info-box">
+                    <div class = "first-name">
+                        <label>First Name</label>
+                        <input
+                            id="first-name"
+                            type="text"
+                            placeholder="Thomas"
+                        >
+                    </div>
+                    
+                    <div class = "last-name">
+                        <label>Last Name</label>
+                        <input
+                            id="last-name"
+                            type="text"
+                            placeholder="Smith"
+                        >
+                    </div>
+                </div>
+
+                <label>Email address</label>
+                <input
+                    id="email"
+                    type="email"
+                    placeholder="you@gmail.com"
+                >
+
+                <label>Password</label>
+                <input
+                    id="password"
+                    type="password"
+                    placeholder="Minimum 7 characters"
+                >
+
+                <label>Confirm Password</label>
+                <input
+                    id="confirm-password"
+                    type="password"
+                    placeholder="Confirm your password"
+                >
+
+                <!--Submit button for the Register form-->
+                <button type="submit">
+                    Sign Up
+                </button>
+            </form>
+
+            <p class="switch-link">
+                Already have an account?
+                <a href="login.html">Sign In</a>
+            </p>
+        </div>
+    </div>
+</div>
+
+<script src="background.js"></script>
+
+
+<!--Link to JavaScript file-->
+<script src="register.js"></script>
+
+
+</body>
+</html>

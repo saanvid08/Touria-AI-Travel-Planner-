@@ -1,0 +1,113 @@
+<!--
+File created date: July 21, 2026
+Created by: Aswitha
+Updated by: Aswitha (July 29, 2026) — conversation history sidebar
+Function of file: Touria chatbot shell with history panel and Back to home.
+-->
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Chat | Touria</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/png" href="/favicon.png">
+    <link rel="stylesheet" href="chatbot.css?v=18">
+    <link rel="stylesheet" href="touria-chatbot.css?v=5">
+    <link
+        rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+
+<body class="chat-page">
+    <div class="chat-shell">
+        <!-- History sidebar -->
+        <aside class="history-panel" id="history-panel" aria-label="Trip conversation history">
+            <div class="history-brand">
+                <img src="/images/touria-bot-logo.png" alt="" class="history-logo">
+                <div>
+                    <p class="history-brand-name">Touria</p>
+                    <p class="history-brand-sub">Your trips</p>
+                </div>
+            </div>
+
+            <button type="button" class="history-new-btn" id="new-chat-btn">
+                <i class="fa-solid fa-plus" aria-hidden="true"></i>
+                New trip chat
+            </button>
+
+            <div class="history-list-wrap">
+                <p class="history-section-label">Recent</p>
+                <div id="history-list" class="history-list" role="list"></div>
+                <p class="history-empty" id="history-empty">No saved trips yet. Start chatting to build your history.</p>
+            </div>
+
+            <div class="history-footer" id="history-footer"></div>
+        </aside>
+
+        <div class="chat-main">
+            <nav class="navbar">
+                <button type="button" class="history-toggle" id="history-toggle" aria-label="Open trip history">
+                    <i class="fa-solid fa-clock-rotate-left" aria-hidden="true"></i>
+                </button>
+                <a class="back-home-btn" href="touria-home.html">
+                    <i class="fa-solid fa-arrow-left" aria-hidden="true"></i>
+                    <span>Back to home</span>
+                </a>
+            </nav>
+
+            <div class="container">
+                <div class="welcome-panel" id="welcome-panel">
+                    <div class="welcome-art-wrap">
+                        <img
+                            class="welcome-art"
+                            src="/images/touria-welcome.png"
+                            alt="World landmarks welcome graphic">
+                    </div>
+                    <h1 class="welcome-title">Hi there, How are you?</h1>
+                    <p class="welcome-guest" id="welcome-message" hidden></p>
+                </div>
+
+                <div id="chatbox" class="chatbox" aria-live="polite"></div>
+
+                <div class="input-area-container">
+                    <div id="suggested-replies" class="suggested-replies"></div>
+                    <div class="input-area">
+                        <textarea
+                            id="inputMessage"
+                            placeholder="Where are you planning to go?"
+                            rows="1"></textarea>
+                        <button id="sendBtn" type="button" aria-label="Send message">
+                            <i class="fa-solid fa-arrow-up"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="history-backdrop" id="history-backdrop" hidden></div>
+
+    <!-- Full-size image lightbox -->
+    <div
+        class="lightbox"
+        id="plan-lightbox"
+        hidden
+        role="dialog"
+        aria-modal="true"
+        aria-label="Plan photo viewer">
+        <button type="button" class="lightbox-close" id="lightbox-close" aria-label="Close photo viewer">
+            ×
+        </button>
+        <figure class="lightbox-figure">
+            <img id="lightbox-image" src="" alt="">
+            <figcaption id="lightbox-caption"></figcaption>
+        </figure>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+    <script src="touria-chatbot.js?v=5"></script>
+</body>
+
+</html>

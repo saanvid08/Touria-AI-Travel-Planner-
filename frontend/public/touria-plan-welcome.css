@@ -1,0 +1,174 @@
+/*
+File created date: July 22, 2026
+Created by: Aswitha
+Function of file: Styles for the plan welcome page (hero art, greeting, trip-type option cards).
+*/
+
+@import url('https://fonts.googleapis.com/css2?family=Caveat:wght@600;700&family=Outfit:wght@400;500;600;700&display=swap');
+
+/* ---- Design tokens (keep in sync with chatbot pale-blue theme) ---- */
+:root {
+    --bg: #e6fbff;
+    --ink: #14120f;
+    --muted: #5c6570;
+    --card: #ffffff;
+    --border: #d7e3e8;
+    --border-active: #1f6b63;
+    --chevron: #1f6b63;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: "Outfit", sans-serif;
+    background: var(--bg);
+    color: var(--ink);
+    min-height: 100vh;
+}
+
+/* ---- Top nav: back to marketing home ---- */
+.navbar {
+    height: 64px;
+    display: flex;
+    align-items: center;
+    padding: 0 24px;
+}
+
+.back-home-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    color: var(--ink);
+    text-decoration: none;
+    font-size: 0.95rem;
+    font-weight: 600;
+    padding: 0.4rem 0.85rem;
+    border-radius: 999px;
+    border: 1px solid rgba(0, 0, 0, 0.08);
+    background: rgba(255, 255, 255, 0.7);
+}
+
+.back-home-btn:hover {
+    background: #fff;
+}
+
+/* ---- Page content column ---- */
+.welcome-options {
+    max-width: 720px;
+    margin: 0 auto;
+    padding: 0.5rem 1.25rem 3rem;
+}
+
+/* ---- Step 1 UI: welcome image + greeting ---- */
+.welcome-hero {
+    text-align: center;
+    margin-bottom: 1.75rem;
+}
+
+.welcome-hero-art {
+    display: block;
+    width: min(640px, 100%);
+    height: auto;
+    max-height: 36vh;
+    margin: 0 auto 1rem;
+    object-fit: contain;
+    object-position: center;
+}
+
+.welcome-greeting {
+    font-family: "Caveat", cursive;
+    font-size: clamp(2.1rem, 5vw, 2.85rem);
+    font-weight: 700;
+    color: var(--ink);
+}
+
+/* ---- Step 2 UI: section heading above the cards ---- */
+.options-header {
+    margin-bottom: 1.25rem;
+    text-align: left;
+}
+
+.options-header h2 {
+    font-size: clamp(1.35rem, 3vw, 1.65rem);
+    font-weight: 700;
+    line-height: 1.25;
+    margin-bottom: 0.45rem;
+}
+
+.options-header p {
+    color: var(--muted);
+    font-size: 1rem;
+    line-height: 1.45;
+}
+
+/* ---- Step 3 UI: trip-type cards (click handled in touria-plan-welcome.js) ---- */
+.option-cards {
+    display: flex;
+    flex-direction: column;
+    gap: 0.85rem;
+}
+
+.option-card {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    text-align: left;
+    padding: 1.15rem 1.2rem;
+    border-radius: 12px;
+    border: 1px solid var(--border);
+    background: var(--card);
+    cursor: pointer;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease, transform 0.15s ease;
+}
+
+.option-card:hover,
+.option-card:focus-visible {
+    border-color: var(--border-active);
+    box-shadow: 0 6px 18px rgba(31, 107, 99, 0.1);
+    outline: none;
+}
+
+.option-card:active {
+    transform: scale(0.995);
+}
+
+.option-card.is-selected {
+    border-color: var(--border-active);
+}
+
+.option-text {
+    display: flex;
+    flex-direction: column;
+    gap: 0.3rem;
+    min-width: 0;
+}
+
+.option-title {
+    font-size: 1.05rem;
+    font-weight: 700;
+    color: var(--ink);
+}
+
+.option-desc {
+    font-size: 0.92rem;
+    color: var(--muted);
+    line-height: 1.4;
+}
+
+.option-chevron {
+    color: var(--chevron);
+    font-size: 0.95rem;
+    flex-shrink: 0;
+}
+
+@media (max-width: 640px) {
+    .welcome-hero-art {
+        max-height: 28vh;
+    }
+}

@@ -1,0 +1,382 @@
+/*
+File created date: July 21, 2026
+Created by: Aswitha
+Updated by: Aswitha (July 29, 2026) — plan image lightbox, history sidebar
+Function of file: Extra styles for the Touria chatbot wrapper page (back-to-home navbar).
+  Shared chat UI (bubbles, scroll, input) lives in chatbot.css — keep overrides here only.
+*/
+
+@import url('https://fonts.googleapis.com/css2?family=Sora:wght@600;700&display=swap');
+
+/* Align the back button to the left; chat content centering is handled in chatbot.css */
+.navbar {
+    justify-content: flex-start;
+}
+
+body.lightbox-open {
+    overflow: hidden;
+}
+
+.text-bubble img {
+    width: auto;
+    max-width: 100%;
+    height: auto;
+    max-height: 320px;
+    object-fit: contain;
+    border-radius: 15px;
+    margin: 15px auto;
+    display: block;
+    cursor: zoom-in;
+    transition: opacity 0.2s ease;
+    background: rgba(255, 255, 255, 0.55);
+}
+
+.text-bubble img:hover {
+    opacity: 0.92;
+}
+
+.text-bubble img:focus-visible {
+    outline: 3px solid #1f6b63;
+    outline-offset: 3px;
+}
+
+/* ---- Lightbox: full-screen overlay when a plan photo is clicked ---- */
+.lightbox {
+    position: fixed;
+    inset: 0;
+    z-index: 1000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 1.5rem;
+    background: rgba(12, 10, 8, 0.88);
+    backdrop-filter: blur(4px);
+    animation: lightboxFadeIn 0.25s ease;
+}
+
+.lightbox[hidden] {
+    display: none;
+}
+
+.lightbox-figure {
+    max-width: min(960px, 100%);
+    max-height: 90vh;
+    margin: 0;
+    text-align: center;
+}
+
+.lightbox-figure img {
+    display: block;
+    max-width: 100%;
+    max-height: calc(90vh - 3rem);
+    width: auto;
+    height: auto;
+    margin: 0 auto;
+    border-radius: 12px;
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.45);
+    object-fit: contain;
+    cursor: default;
+}
+
+.lightbox-figure figcaption {
+    margin-top: 0.85rem;
+    color: #f5f0ea;
+    font-family: "Outfit", sans-serif;
+    font-size: 1.05rem;
+    font-weight: 500;
+}
+
+.lightbox-close {
+    position: absolute;
+    top: 1rem;
+    right: 1.1rem;
+    width: 2.75rem;
+    height: 2.75rem;
+    border: 0;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.12);
+    color: #fff;
+    font-size: 1.75rem;
+    line-height: 1;
+    cursor: pointer;
+    transition: background 0.2s ease;
+}
+
+.lightbox-close:hover {
+    background: rgba(255, 255, 255, 0.22);
+}
+
+@keyframes lightboxFadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+/* ---- Chat shell: history sidebar + main chat ---- */
+.chat-shell {
+    display: flex;
+    width: 100%;
+    height: 100vh;
+    min-height: 100vh;
+    overflow: hidden;
+    background: var(--chat-bg);
+}
+
+.chat-main {
+    flex: 1;
+    min-width: 0;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
+.chat-main .navbar {
+    flex-shrink: 0;
+    justify-content: flex-start;
+    gap: 0.5rem;
+    padding: 0 1rem;
+    background: rgba(230, 251, 255, 0.92);
+    backdrop-filter: blur(8px);
+    border-bottom: 1px solid rgba(40, 80, 100, 0.08);
+}
+
+.chat-main .container {
+    flex: 1;
+    min-height: 0;
+    height: auto;
+}
+
+.navbar-spacer {
+    flex: 1;
+}
+
+.history-toggle {
+    display: none;
+    width: 40px;
+    height: 40px;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    border-radius: 12px;
+    background: #fff;
+    color: var(--ink);
+    cursor: pointer;
+}
+
+.history-panel {
+    width: 300px;
+    flex-shrink: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.85rem;
+    padding: 1.1rem 1rem 1rem;
+    background: linear-gradient(180deg, #f7fcfe 0%, #e8f4f8 100%);
+    border-right: 1px solid rgba(40, 80, 100, 0.1);
+    box-sizing: border-box;
+    z-index: 30;
+}
+
+.history-brand {
+    display: flex;
+    align-items: center;
+    gap: 0.7rem;
+    padding: 0.25rem 0.35rem;
+}
+
+.history-logo {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.history-brand-name {
+    font-family: "Sora", sans-serif;
+    font-weight: 700;
+    font-size: 1.05rem;
+    margin: 0;
+}
+
+.history-brand-sub {
+    margin: 0;
+    font-size: 0.8rem;
+    color: var(--muted);
+}
+
+.history-new-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.45rem;
+    width: 100%;
+    border: 0;
+    border-radius: 14px;
+    padding: 0.75rem 1rem;
+    background: #d4784a;
+    color: #fff;
+    font-family: "Outfit", sans-serif;
+    font-weight: 600;
+    font-size: 0.95rem;
+    cursor: pointer;
+    transition: transform 0.15s ease, background 0.15s ease;
+}
+
+.history-new-btn:hover {
+    background: #c45f38;
+    transform: translateY(-1px);
+}
+
+.history-list-wrap {
+    flex: 1;
+    min-height: 0;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 0.45rem;
+}
+
+.history-section-label {
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin: 0.35rem 0.35rem 0.15rem;
+}
+
+.history-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+}
+
+.history-item {
+    text-align: left;
+    border: 1px solid transparent;
+    border-radius: 14px;
+    padding: 0.7rem 0.8rem;
+    background: rgba(255, 255, 255, 0.72);
+    cursor: pointer;
+    transition: background 0.15s ease, border-color 0.15s ease, box-shadow 0.15s ease;
+}
+
+.history-item:hover {
+    background: #fff;
+    border-color: rgba(40, 120, 140, 0.18);
+    box-shadow: 0 6px 18px rgba(40, 70, 90, 0.08);
+}
+
+.history-item.is-active {
+    background: #fff;
+    border-color: #8fd0df;
+    box-shadow: 0 8px 20px rgba(40, 120, 140, 0.12);
+}
+
+.history-item-title {
+    display: block;
+    font-family: "Outfit", sans-serif;
+    font-weight: 600;
+    font-size: 0.92rem;
+    color: var(--ink);
+    margin-bottom: 0.2rem;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.history-item-meta {
+    display: block;
+    font-size: 0.75rem;
+    color: var(--muted);
+    text-transform: capitalize;
+}
+
+.history-empty {
+    margin: 0.5rem 0.35rem;
+    font-size: 0.88rem;
+    color: var(--muted);
+    line-height: 1.45;
+}
+
+.history-footer {
+    border-top: 1px solid rgba(40, 80, 100, 0.1);
+    padding-top: 0.85rem;
+}
+
+.history-user {
+    display: flex;
+    align-items: center;
+    gap: 0.65rem;
+}
+
+.history-user-avatar {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    background: #1c1a17;
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+    font-size: 0.95rem;
+}
+
+.history-user-name {
+    margin: 0;
+    font-weight: 600;
+    font-size: 0.9rem;
+}
+
+.history-user-email {
+    margin: 0;
+    font-size: 0.75rem;
+    color: var(--muted);
+    max-width: 180px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.history-guest-note {
+    margin: 0 0 0.45rem;
+    font-size: 0.82rem;
+    color: var(--muted);
+    line-height: 1.4;
+}
+
+.history-login-link {
+    font-size: 0.88rem;
+    font-weight: 600;
+    color: #1f6b63;
+}
+
+.history-backdrop {
+    display: none;
+}
+
+@media (max-width: 900px) {
+    .history-panel {
+        position: fixed;
+        inset: 0 auto 0 0;
+        width: min(320px, 86vw);
+        transform: translateX(-105%);
+        transition: transform 0.28s ease;
+        box-shadow: 12px 0 40px rgba(20, 40, 50, 0.18);
+    }
+
+    body.history-open .history-panel {
+        transform: translateX(0);
+    }
+
+    .history-toggle {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .history-backdrop:not([hidden]) {
+        display: block;
+        position: fixed;
+        inset: 0;
+        background: rgba(10, 20, 30, 0.35);
+        z-index: 25;
+    }
+}

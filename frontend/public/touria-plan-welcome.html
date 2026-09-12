@@ -1,0 +1,106 @@
+<!--
+File created date: July 22, 2026
+Created by: Aswitha
+Function of file: Plan welcome screen — landmark image + trip-type cards on one page.
+  User picks a trip category; touria-plan-welcome.js saves it and opens the chatbot.
+-->
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Touria — Plan your trip</title>
+    <link rel="icon" type="image/png" href="/favicon.png">
+    <link rel="stylesheet" href="touria-plan-welcome.css">
+    <link
+        rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+
+<body>
+    <!-- Nav: return to marketing home without starting a trip -->
+    <nav class="navbar">
+        <a class="back-home-btn" href="touria-home.html">
+            <i class="fa-solid fa-arrow-left" aria-hidden="true"></i>
+            <span>Back to home</span>
+        </a>
+    </nav>
+
+    <main class="welcome-options">
+        <!-- Step 1: Landmark welcome art + greeting (same art as chatbot welcome) -->
+        <div class="welcome-hero">
+            <img
+                class="welcome-hero-art"
+                src="/images/touria-welcome.png"
+                alt="World landmarks welcome graphic">
+            <h1 class="welcome-greeting">Hi there, How are you?</h1>
+        </div>
+
+        <!-- Step 2: Prompt that leads into the trip-type cards -->
+        <header class="options-header">
+            <h2>Where are you in your journey?</h2>
+            <p>Pick the option that fits you best so we can route you to the right help.</p>
+        </header>
+
+        <!-- Step 3: Trip-type cards — click saves choice via touria-plan-welcome.js then opens chat -->
+        <div class="option-cards" role="list">
+            <button
+                type="button"
+                class="option-card"
+                data-trip-type="international"
+                data-label="I'm planning an international trip"
+                role="listitem">
+                <span class="option-text">
+                    <span class="option-title">I'm planning an international trip</span>
+                    <span class="option-desc">Traveling outside the country — visas, flights, and destinations abroad</span>
+                </span>
+                <i class="fa-solid fa-chevron-right option-chevron" aria-hidden="true"></i>
+            </button>
+
+            <button
+                type="button"
+                class="option-card"
+                data-trip-type="national"
+                data-label="I'm planning a national trip within the US"
+                role="listitem">
+                <span class="option-text">
+                    <span class="option-title">I'm planning a national trip (US)</span>
+                    <span class="option-desc">Exploring destinations across the United States</span>
+                </span>
+                <i class="fa-solid fa-chevron-right option-chevron" aria-hidden="true"></i>
+            </button>
+
+            <button
+                type="button"
+                class="option-card"
+                data-trip-type="local"
+                data-label="I'm planning a local getaway"
+                role="listitem">
+                <span class="option-text">
+                    <span class="option-title">I'm planning a local getaway</span>
+                    <span class="option-desc">Nearby cities, day trips, or regional weekend plans</span>
+                </span>
+                <i class="fa-solid fa-chevron-right option-chevron" aria-hidden="true"></i>
+            </button>
+
+            <button
+                type="button"
+                class="option-card"
+                data-trip-type="other"
+                data-label="I have something else in mind"
+                role="listitem">
+                <span class="option-text">
+                    <span class="option-title">I have something else in mind</span>
+                    <span class="option-desc">Type your own destination or trip idea in the next step</span>
+                </span>
+                <i class="fa-solid fa-chevron-right option-chevron" aria-hidden="true"></i>
+            </button>
+        </div>
+    </main>
+
+    <script src="touria-plan-welcome.js"></script>
+</body>
+
+</html>

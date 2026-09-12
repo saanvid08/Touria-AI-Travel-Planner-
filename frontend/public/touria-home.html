@@ -1,0 +1,134 @@
+<!--
+File created date: July 21, 2026
+Created by: Aswitha
+Updated by: Aswitha (July 29, 2026) — hero-side destination marquees
+Function of file: Touria marketing home page — hero with left/right scrolling destinations, Start planning CTA.
+  Entry point after login/register/guest. Does not replace index.html; links to plan-welcome then chat.
+-->
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home | Touria</title>
+    <link rel="icon" type="image/png" href="/favicon.png">
+    <link
+        rel="stylesheet"
+        href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+        integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY="
+        crossorigin="">
+    <link rel="stylesheet" href="touria-home.css?v=6">
+</head>
+
+<body>
+    <!-- Top bar: profile / logout -->
+    <header class="site-topbar">
+        <a class="topbar-brand" href="touria-home.html">
+            <img src="/images/touria-bot-logo.png" alt="" class="topbar-logo">
+            <span>Xforia's TOURIA</span>
+        </a>
+        <div class="topbar-actions">
+            <div class="profile-menu" id="profile-menu">
+                <button type="button" class="profile-trigger" id="profile-trigger" aria-expanded="false" aria-haspopup="true">
+                    <span class="profile-avatar" id="profile-avatar">T</span>
+                    <span class="profile-trigger-label" id="profile-trigger-label">Guest</span>
+                    <i class="profile-caret" aria-hidden="true">▾</i>
+                </button>
+                <div class="profile-dropdown" id="profile-dropdown" hidden>
+                    <div class="profile-dropdown-head">
+                        <p class="profile-dropdown-name" id="profile-name">Guest traveler</p>
+                        <p class="profile-dropdown-email" id="profile-email">Browsing without an account</p>
+                    </div>
+                    <dl class="profile-details" id="profile-details"></dl>
+                    <div class="profile-dropdown-actions" id="profile-actions"></div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero: brand + CTA centered; destination marquees pinned to side corners -->
+    <header class="hero">
+        <div class="hero-bg" aria-hidden="true"></div>
+
+        <div class="hero-marquee hero-marquee--left" aria-hidden="true">
+            <div class="marquee-track" id="marquee-left"></div>
+        </div>
+
+        <div class="hero-marquee hero-marquee--right" aria-hidden="true">
+            <div class="marquee-track" id="marquee-right"></div>
+        </div>
+
+        <div class="hero-content">
+            <div class="brand-row">
+                <img class="brand-logo" src="/images/touria-bot-logo.png" alt="Touria logo">
+                <p class="brand">Xforia's TOURIA</p>
+            </div>
+            <h1>Plan your trip in minutes, not hours</h1>
+            <p class="hero-copy">
+                Tell Touria where you wanna go. Touria will generate a personalised plan for you.
+            </p>
+            <a class="cta" href="touria-plan-welcome.html">
+                <span>Start planning</span>
+                <span class="cta-arrow" aria-hidden="true">→</span>
+            </a>
+        </div>
+    </header>
+
+    <!-- How it works -->
+    <section class="how-it-works" id="how-it-works">
+        <h2>How it works</h2>
+        <div class="steps">
+            <article class="step">
+                <div class="step-num">1</div>
+                <h3>Share Preferences</h3>
+                <p>Budget, dates...</p>
+            </article>
+            <article class="step">
+                <div class="step-num">2</div>
+                <h3>AI shows all the recommended actions</h3>
+                <p>Day-by-day plan, ready fast</p>
+            </article>
+            <article class="step">
+                <div class="step-num">3</div>
+                <h3>Book and go</h3>
+                <p>Pack accordingly</p>
+            </article>
+        </div>
+    </section>
+
+    <!-- Interactive world map — pick a destination to start planning -->
+    <section class="world-map-section" id="choose-place">
+        <h2>Choose the place where you wanna go</h2>
+        <div class="world-map-shell">
+            <div id="world-map" class="world-map" role="application" aria-label="Interactive world map of popular destinations"></div>
+        </div>
+        <p class="map-hint" id="map-selected-hint" hidden></p>
+    </section>
+
+    <!-- Image lightbox -->
+    <div
+        class="lightbox"
+        id="destination-lightbox"
+        hidden
+        role="dialog"
+        aria-modal="true"
+        aria-label="Destination photo viewer">
+        <button type="button" class="lightbox-close" id="lightbox-close" aria-label="Close photo viewer">
+            ×
+        </button>
+        <figure class="lightbox-figure">
+            <img id="lightbox-image" src="" alt="">
+            <figcaption id="lightbox-caption"></figcaption>
+        </figure>
+    </div>
+
+    <script
+        src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+        integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
+        crossorigin=""></script>
+    <script src="touria-home.js?v=6"></script>
+</body>
+
+</html>

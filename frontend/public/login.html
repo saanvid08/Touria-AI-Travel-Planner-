@@ -1,0 +1,94 @@
+<!--
+File created date: July 1, 2026
+Created by: Saanvi Doppalapudi
+Function of file: Login page for AI Tour Planner
+-->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!--Page set up-->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign In | Touria</title>
+    <link rel="icon" type="image/png" href="/favicon.png">
+    <link rel="stylesheet" href="login.css">
+</head>
+<body>
+
+<!-- Website Logo Bubble -->
+<a href="touria-plan-welcome.html" class="logo-bubble">
+   <img src="/favicon.png" alt="Touria">
+   <span>Touria</span>
+</a>
+
+<div class="login-container">
+
+    <!--Left Side of Page-->
+    <div class="left-side">
+        <div class="background-image"></div>
+
+        <div class="overlay"></div>
+
+        <!--Title and description of the page-->
+        <div class="title">
+            <h1>Your personalized travel planner awaits.</h1>
+            <p>Describe your trip. AI builds a personalized itinerary in moments: flights, stays, and much more.</p>
+        </div>
+
+    </div>
+
+    <!--Right Side (Login Form Section)-->
+    <div class="right-side">
+
+        <div class="info-box">
+
+            <!--Login form title and description-->
+            <h2>Welcome to AI Tour Planner</h2>
+            <h3> Sign in to access your travel plans </h3>
+
+            <!--Input fields for email and password, with placeholders-->
+            <form>
+                <label>Email address</label>
+                <input
+                    id="email"
+                    type="email"
+                    placeholder="you@gmail.com"
+                >
+
+                <label>Password</label>
+                <input
+                    id="password"
+                    type="password"
+                    placeholder="Password"
+                >
+                <!--Submit button for the login form-->
+                <button type="submit">
+                    Sign In
+                </button>
+
+            </form>
+
+            <!--Link to registration page for users without an account-->
+            <p class="switch-link">
+                Don't have an account?
+                <a href="register.html">Register</a>
+            </p>
+
+        </div>
+
+    </div>
+
+</div>
+
+<script src="background.js"></script>
+
+<!--Link to JavaScript file-->
+<script src="login.js"></script>
+
+</body>
+</html>
+
+
+
+
