@@ -1,0 +1,188 @@
+/*
+File created date: July 10, 2026
+Created by: Saanvi Doppalapudi
+Function of file: CSS styling for the starting page of the AI Travel Planner
+*/
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@600;700&display=swap');
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body{
+    font-family:Inter,sans-serif;
+    background:#0b1017;
+    height:100vh;
+}
+
+.landing-page{
+    width:100%;
+    height:100vh;
+    position:relative;
+    overflow:hidden;
+}
+
+.background-image{
+    position:absolute;
+    inset:0;
+    background-size:cover;
+    background-position:center;
+    background-repeat:no-repeat;
+    transition:opacity 0.8s ease;
+    z-index:0;
+}
+
+.background-image::after{
+    content:"";
+    position:absolute;
+    inset:0;
+    background:rgba(8,13,23,.65);
+}
+
+.title{
+    position:absolute;
+    left:80px;
+    top:50%;
+    transform:translateY(-50%);
+    max-width:650px;
+    z-index:1;
+}
+
+.landing-brand{
+    display:flex;
+    align-items:center;
+    gap:12px;
+    margin-bottom:22px;
+    color:#fff;
+    font-weight:700;
+    font-size:18px;
+    letter-spacing:0.02em;
+}
+
+.landing-logo{
+    width:44px;
+    height:44px;
+    border-radius:50%;
+    object-fit:cover;
+}
+
+.title h1{
+    font-family:"Playfair Display",serif;
+    color:white;
+    font-size:82px;
+    line-height:1.1;
+    margin-bottom:35px;
+}
+
+.title p{
+    color:#d4d8df;
+    font-size:21px;
+    line-height:1.8;
+    max-width:600px;
+    margin-bottom:45px;
+}
+
+.button-row{
+    display:flex;
+    align-items:center;
+    gap:20px;
+}
+
+.join-btn,
+button.join-btn{
+    height:65px;
+    width:290px;
+    border:none;
+    border-radius:14px;
+    background:#f08a5d;
+    color:#fff;
+    font-size:20px;
+    font-weight:700;
+    cursor:pointer;
+    transition:.3s;
+}
+
+.join-btn:hover,
+button.join-btn:hover{
+    background:#e0784a;
+    transform:translateY(-2px);
+}
+
+.small-button{
+    height:65px;
+    width:170px;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    border:1px solid rgba(255,255,255,.18);
+    border-radius:14px;
+    background:rgba(255,255,255,.05);
+    color:white;
+    text-decoration:none;
+    font-size:18px;
+    font-weight:600;
+    transition:.3s;
+}
+
+.small-button:hover{
+    background:rgba(255,255,255,.12);
+    transform:translateY(-2px);
+}
+
+.landing-or{
+    display:flex;
+    align-items:center;
+    gap:15px;
+    margin:28px 0 18px;
+    max-width:480px;
+}
+
+.landing-or span{
+    flex:1;
+    height:1px;
+    background:rgba(255,255,255,0.35);
+}
+
+.landing-or p{
+    margin:0;
+    color:rgba(255,255,255,0.75);
+    font-size:15px;
+}
+
+.guest-button{
+    display:inline-flex;
+    justify-content:center;
+    align-items:center;
+    min-width:290px;
+    height:60px;
+    padding:0 24px;
+    border:2px solid #f08a5d;
+    border-radius:12px;
+    color:#fff;
+    text-decoration:none;
+    font-size:18px;
+    font-weight:600;
+    background:rgba(240,138,93,0.18);
+    cursor:pointer;
+    transition:.3s;
+    margin-left: 90px;
+}
+
+.guest-button:hover{
+    background:rgba(240,138,93,0.32);
+}
+
+@media (max-width: 900px){
+    .title{
+        left:24px;
+        right:24px;
+        max-width:none;
+    }
+
+    .title h1{
+        font-size:48px;
+    }
+}
